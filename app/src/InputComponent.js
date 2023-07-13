@@ -1,4 +1,4 @@
-import styles from "./InputComponent.css";
+import "./InputComponent.css";
 import { useState } from "react";
 
 export default function InputComponent(props) {

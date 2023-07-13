@@ -1,4 +1,4 @@
-import styles from "./FilterComponent.css";
+import "./FilterComponent.css";
 
 export default function FilterComponent(props) {
   const all = () => {
@@ -12,7 +12,7 @@ export default function FilterComponent(props) {
   };
 
   return (
-    <div>
+    <div className="filters">
       <button onClick={all}>すべて</button>
       <button onClick={done}>完了</button>
       <button onClick={unDone}>未完了</button>

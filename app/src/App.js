@@ -36,7 +36,7 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div className="wrapper">
       <InputComponent addTodoItem={addTodoItem} />
       <FilterComponent setFilterStatus={setFilterStatus} />
       <ListComponent
