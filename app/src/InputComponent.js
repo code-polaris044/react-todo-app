@@ -1,5 +1,10 @@
 import styles from "./InputComponent.css";
 
 export default function InputComponent() {
-  return <h1>InputComponent</h1>;
+  return (
+    <form>
+      <input type="text" placeholder="タイトル" />
+      <button>保存</button>
+    </form>
+  );
 }
