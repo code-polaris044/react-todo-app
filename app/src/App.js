@@ -7,18 +7,9 @@ import ListComponent from "./ListComponent";
 
 export default function App() {
   const [todoItems, setTodoItems] = useState([]);
-
-  // useEffect(() => {
-  //   (async () => {
-  //     setTodoItems([
-  //       { id: 1, title: 'あああ', is_done: false },
-  //       { id: 2, title: 'いいい', is_done: true },
-  //       { id: 3, title: 'ううう', is_done: false },
-  //       { id: 4, title: 'えええ', is_done: true },
-  //       { id: 5, title: 'おおお', is_done: false },
-  //     ])
-  //   })()
-  // }, [])
+  // フィルタ用のステート
+  // 0：すべて　1：完了　2：未完了
+  const [filterStatus, setFilterStatus] = useState(0);
 
   // 更新用のメソッドを作っておきコンポーネントに渡す
   const addTodoItem = (title) => {
@@ -28,11 +19,32 @@ export default function App() {
     ]);
   };
 
+  // ステータス(チェック)更新メソッド
+  const updateStatusTodoItem = (id) => {
+    setTodoItems(
+      todoItems.map((todoItem) => {
+        if (todoItem.id === id) {
+          todoItem.is_done = !todoItem.is_done;
+        }
+        return todoItem;
+      })
+    );
+  };
+  // Todo削除用のメソッド
+  const removeTodoItem = (id) => {
+    setTodoItems(todoItems.filter((todoItem) => todoItem.id !== id));
+  };
+
   return (
     <div>
       <InputComponent addTodoItem={addTodoItem} />
-      <FilterComponent />
-      <ListComponent todoItems={todoItems} />
+      <FilterComponent setFilterStatus={setFilterStatus} />
+      <ListComponent
+        todoItems={todoItems}
+        updateStatusTodoItem={updateStatusTodoItem}
+        removeTodoItem={removeTodoItem}
+        filterStatus={filterStatus}
+      />
     </div>
   );
 }
